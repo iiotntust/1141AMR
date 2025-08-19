@@ -4,7 +4,7 @@
 ### Reference
 - EPSON robot: https://github.com/iiotntust/1121robot
 - Jetbot: https://jetbot.org/master/
-## :beginner: Exercises and resources
+## :beginner: EPSON robot exercises and resources
 - Basic and Challenging tasks: (by team)
     - [ ] Basic tasks
     - [ ] Challenging tasks
