@@ -133,11 +133,6 @@ In this sector, students learn how to illustrate the wiring diagrams for the I/O
    - WEINTEK forum (EPSON): https://forum.weintekusa.com/t/epson/669
    - WEINTEK forum (EPSON)https://forum.weintekusa.com/t/epson-robot/665
    - WEINTEK HMI full course: [https://youtu.be/9YaUIj5ODLw?si=S0883oPlBQHvz60B](https://www.youtube.com/watch?v=PaFW0P7mkN8&list=PLAol9q3JCKsGbLue6MNgywZ9IXAbHMF4O)
-### :small_blue_diamond: Vision software
-1. Python download: https://www.python.org/downloads/    
-2. PyCharm IDE download : https://www.jetbrains.com/pycharm/download/?section=windows  
-3. Python OpenCV: https://pypi.org/project/opencv-python/
-4. Colab Demo : https://colab.research.google.com/drive/1-fFviwLNJBtvoa2tp_eKlBeV0h546U0o?usp=sharing
 
 ## 📈  Final exam tasks (competition):
 Each team should complete the following tasks in 30 minutes. 
