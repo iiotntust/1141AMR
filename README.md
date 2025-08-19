@@ -1,7 +1,9 @@
-# 1141 Introduction to Robotics Tutorial 
-## ME4609301 Mechanical Engineering Department, Taiwan-Paraquay Polytechnic University
+# 1141 Autonomous Mobile Vehicles and Robots Introduction
 ## SI5302701 Graduate Institute of Intelligent Manufacturing Tech., NTUST.  
-:bulb: In this class, the students can learn the basics of manipulating industrial robot arms (EPSON robot) operation. The class introduces two types of robots, Pro-6-Axis robots, and SCARA robots, but only utilizes Pro-6-Axis robots in exercises. The main subjects include Introduction to Industrial Robot Arm, Software and Simulation, Calibration and Alignment, I/O port Communication, Human-machine interface (HMI), and Machine vision. Ultimately, the students can design an automatic work cell with the robot. 
+:bulb: The course consists of two portions: Industrial Robot Hands-on Practice and Fundamentals of Autonomous Mobile Robots (AMRs). The industrial robot section includes simulation programming, robot operation, and integration exercises. The AMR section focuses on explaining the theoretical concepts and principles of motion through an exercise kit, the Jetbot, providing students with a solid academic foundation for further research in autonomous robotics.
+:Reference:
+- EPSON robot: https://github.com/iiotntust/1121robot
+- Jetbot: https://jetbot.org/master/
 ## :beginner: Exercises and resources
 - Basic and Challenging tasks: (by team)
     - [ ] Basic tasks
