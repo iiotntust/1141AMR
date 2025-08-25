@@ -1,0 +1,633 @@
+Global String CMDIN$(0)
+Global Integer WDFlag
+Global Real WDX, WDY, WDZ, WDU, WDV, WDW
+Function main
+Off 1
+MemOutW 0, 0
+MemOutW 1, 0
+MemOutW 2, 0
+MemOutW 3, 0
+MemOutW 4, 0
+MemOutW 5, 0
+MemOutW 6, 0
+
+MemOff 201
+MemOff 202
+Wait 1
+Xqt OutToHMI, NoPause
+Xqt InputFrHMI, NoPause
+
+Wait Oport(1) = On
+
+Do
+	If MemSw(72) = On Then
+		
+		
+		If TaskState(ManualMode) <> 0 Then Quit ManualMode
+		If TaskState(AutoMode) = 0 Then Xqt AutoMode
+			
+	Else
+		If TaskState(AutoMode) <> 0 Then Quit AutoMode
+		If TaskState(ManualMode) = 0 Then Xqt ManualMode
+		
+		
+	EndIf
+	
+	
+Loop
+
+
+Fend
+Function InputFrHMI
+String CMD$
+Do
+	Print "CHKNET(201)=", ChkNet(201)
+	Do While MemSw(201) = Off
+		OpenNet #201 As Server
+		Print "Waitting InputFrHMI Connect!"
+		WaitNet #201
+		Print "InputFrHMI Connect is OK!"
+		MemOn 201
+	Loop
+
+	If MemSw(202) = On And MemSw(201) = On Then On 1 '14
+	If MemSw(202) = Off Or MemSw(201) = Off Then Off 1 '14
+	
+	
+	Do While Oport(1) = On
+	'	Print "CHKNET(201)=", ChkNet(201)
+		If ChkNet(201) = -3 Then
+		MemOff 201
+		Off 1 '14
+		Exit Do
+		EndIf
+
+		Input #201, CMD$
+		ParseStr CMD$, CMDIN$(), " "
+		Print CMD$
+		Select CMDIN$(0)
+		Case "AutoMode"
+			MemOn (72)
+		Case "ManulMode"
+			MemOff (72)
+		Case "PassMode"
+			MemOn (73)
+		Case "RAddX"
+			WDFlag = Val(CMDIN$(1))
+			If WDFlag = 1 Then WDX = Val(CMDIN$(2)) / 100.0 Else WDX = -1
+			MemOn (80)
+		Case "RSubtractX"
+			WDFlag = Val(CMDIN$(1))
+			If WDFlag = 1 Then WDX = Val(CMDIN$(2)) / 100.0 Else WDX = -1
+			MemOn (81)
+		Case "RAddY"
+			WDFlag = Val(CMDIN$(1))
+			If WDFlag = 1 Then WDY = Val(CMDIN$(2)) / 100.0 Else WDY = -1
+			MemOn (82)
+		Case "RSubtractY"
+			WDFlag = Val(CMDIN$(1))
+			If WDFlag = 1 Then WDY = Val(CMDIN$(2)) / 100.0 Else WDY = -1
+			MemOn (83)
+		Case "RAddZ"
+			WDFlag = Val(CMDIN$(1))
+			If WDFlag = 1 Then WDZ = Val(CMDIN$(2)) / 100.0 Else WDZ = -1
+			MemOn (84)
+		Case "RSubtractZ"
+			WDFlag = Val(CMDIN$(1))
+			If WDFlag = 1 Then WDZ = Val(CMDIN$(2)) / 100.0 Else WDZ = -1
+			MemOn (85)
+		Case "RAddU"
+			WDFlag = Val(CMDIN$(1))
+			If WDFlag = 1 Then WDU = Val(CMDIN$(2)) / 100.0 Else WDU = -1
+			MemOn (86)
+		Case "RSubtractU"
+			WDFlag = Val(CMDIN$(1))
+			If WDFlag = 1 Then WDU = Val(CMDIN$(2)) / 100.0 Else WDU = -1
+			MemOn (87)
+		Case "RAddV"
+			WDFlag = Val(CMDIN$(1))
+			If WDFlag = 1 Then WDV = Val(CMDIN$(2)) / 100.0 Else WDV = -1
+			MemOn (88)
+		Case "RSubtractV"
+			WDFlag = Val(CMDIN$(1))
+			If WDFlag = 1 Then WDV = Val(CMDIN$(2)) / 100.0 Else WDV = -1
+			MemOn (89)
+		Case "RAddW"
+			WDFlag = Val(CMDIN$(1))
+			If WDFlag = 1 Then WDW = Val(CMDIN$(2)) / 100.0 Else WDW = -1
+			MemOn (90)
+		Case "RSubtractW"
+			WDFlag = Val(CMDIN$(1))
+			If WDFlag = 1 Then WDW = Val(CMDIN$(2)) / 100.0 Else WDW = -1
+			MemOn (91)
+		Case "StopFlag"
+			MemOn (74)
+		Send
+	
+		
+		
+		
+		
+		Redim CMDIN$(0)
+	Loop
+Loop
+Fend
+Function OutToHMI
+String CMDOPHMI$(11)
+	Print " Running AutosignUpdate"
+
+	Do
+		Print "CHKNET(202)=", ChkNet(202)
+		Do While MemSw(202) = Off
+	 	    OpenNet #202 As Server
+	 	    WaitNet #202
+			Print "OutToHMI Connect OK"
+			MemOn 202
+		Loop
+		
+		If MemSw(202) = On And MemSw(201) = On Then On 1 '14
+		If MemSw(202) = Off Or MemSw(201) = Off Then Off 1 '14
+	
+		Do While Oport(1) = On
+			
+			If ChkNet(202) = -3 Then
+			MemOff 202
+			Off 1 '14
+			Exit Do
+			EndIf
+			If In(0) < 16 Then CMDOPHMI$(0) = "0" + Hex$(In(0)) Else CMDOPHMI$(0) = Hex$(In(0))
+			If In(1) < 16 Then CMDOPHMI$(1) = "0" + Hex$(In(1)) Else CMDOPHMI$(1) = Hex$(In(1))
+			If In(2) < 16 Then CMDOPHMI$(2) = "0" + Hex$(In(2)) Else CMDOPHMI$(2) = Hex$(In(2))
+			If Out(0) < 16 Then CMDOPHMI$(3) = "0" + Hex$(Out(0)) Else CMDOPHMI$(3) = Hex$(Out(0))
+			If Out(1) < 16 Then CMDOPHMI$(4) = "0" + Hex$(Out(1)) Else CMDOPHMI$(4) = Hex$(Out(1))
+			If MemIn(0) < 16 Then CMDOPHMI$(5) = "0" + Hex$(MemIn(0)) Else CMDOPHMI$(5) = Hex$(MemIn(0))
+			If MemIn(1) < 16 Then CMDOPHMI$(6) = "0" + Hex$(MemIn(1)) Else CMDOPHMI$(6) = Hex$(MemIn(1))
+			If MemIn(2) < 16 Then CMDOPHMI$(7) = "0" + Hex$(MemIn(2)) Else CMDOPHMI$(7) = Hex$(MemIn(2))
+			If MemIn(3) < 16 Then CMDOPHMI$(8) = "0" + Hex$(MemIn(3)) Else CMDOPHMI$(8) = Hex$(MemIn(3))
+			If MemIn(4) < 16 Then CMDOPHMI$(9) = "0" + Hex$(MemIn(4)) Else CMDOPHMI$(9) = Hex$(MemIn(4))
+			If MemIn(5) < 16 Then CMDOPHMI$(10) = "0" + Hex$(MemIn(5)) Else CMDOPHMI$(10) = Hex$(MemIn(5))
+			Print #202, CMDOPHMI$(0), CMDOPHMI$(1), CMDOPHMI$(2), CMDOPHMI$(3), CMDOPHMI$(4), CMDOPHMI$(5), CMDOPHMI$(6), CMDOPHMI$(7), CMDOPHMI$(8), CMDOPHMI$(9), CMDOPHMI$(10)
+		'	Print CMDOPHMI$(0), CMDOPHMI$(1), CMDOPHMI$(2), CMDOPHMI$(3), CMDOPHMI$(4), CMDOPHMI$(5), CMDOPHMI$(6), CMDOPHMI$(7), CMDOPHMI$(8), CMDOPHMI$(9), CMDOPHMI$(10)
+
+			Wait 0.14
+		Loop
+
+	Loop
+Fend
+
+Function AutoMode
+Do
+	
+Loop
+Fend
+Function ManualMode
+Real Value_Up
+	
+	Tool 0
+Print "Runing in ManualOperation"
+	If Motor = Off Then Motor On
+	If Power = 1 Then Power Low
+	MemOff 74
+	MemOutW 5, 0
+	MemOutW 6, 0
+
+Do While 1
+
+	Wait MemInW(5) <> 0 Or MemInW(6) <> 0
+
+	If MemSw(80) = On Then
+	  	GoSub RAddX
+		GoTo CHKMEMLOOP
+	EndIf
+			
+	If MemSw(82) = On Then
+	  	GoSub RAddY
+		GoTo CHKMEMLOOP
+	EndIf
+	If MemSw(84) = On Then
+	  	GoSub RAddZ
+		GoTo CHKMEMLOOP
+	EndIf
+	If MemSw(86) = On Then
+	  	GoSub RAddU
+		GoTo CHKMEMLOOP
+	EndIf
+	If MemSw(88) = On Then
+	  	GoSub RAddV
+		GoTo CHKMEMLOOP
+	EndIf
+	If MemSw(90) = On Then
+	  	GoSub RAddW
+		GoTo CHKMEMLOOP
+	EndIf
+	If MemSw(81) = On Then
+	  	GoSub RSubtractX
+		GoTo CHKMEMLOOP
+	EndIf
+	If MemSw(83) = On Then
+	  	GoSub RSubtractY
+		GoTo CHKMEMLOOP
+	EndIf
+	If MemSw(85) = On Then
+	  	GoSub RSubtractZ
+		GoTo CHKMEMLOOP
+	EndIf
+	If MemSw(87) = On Then
+	  	GoSub RSubtractU
+		GoTo CHKMEMLOOP
+	EndIf
+	If MemSw(89) = On Then
+	  	GoSub RSubtractV
+		GoTo CHKMEMLOOP
+	EndIf
+	If MemSw(91) = On Then
+	  	GoSub RSubtractW
+		GoTo CHKMEMLOOP
+	EndIf
+	
+	
+	CHKMEMLOOP:
+	MemOff 74
+	MemOutW 5, 0
+	MemOutW 6, 0
+Loop
+
+RAddX:
+Print "running in RAddX"
+	Tool 0
+'	Boxcheck
+'	Print "NowInBox =", NowInBox
+'	If InsideBox(6) = 0 Then Return
+	manualSpeed
+	Print "WDFlag =", WDFlag
+	If WDFlag = 0 Then
+			Value_Up = CX(Here)
+	
+	    Do While (TargetOK(Here :X(Value_Up)))     '计算获取轴的极限正坐标值
+		    Value_Up = Value_Up + 1
+	    Loop
+	    	Value_Up = Value_Up - 10
+'		Power Low
+'		If Value_Up >= -637.5 Then
+'			Move Here :X(-637.5) Till(MemSw(20) = Off Or MemSw(110) = Off)
+'		Else
+			Print "MOVE TO ", Here :X(Value_Up)
+			Print "MEMSW(74)=", MemSw(74), " Oport(1) =", Oport(1)
+			Move Here :X(Value_Up) Till(MemSw(74) = On Or Oport(1) = Off)
+'		EndIf
+	Else
+
+        If WDX > 0 And TargetOK(Here +X(WDX)) = True Then
+
+			If CX(Here) + WDX < -637.5 Then Move Here +X(WDX) Else Move Here :X(-637.5)
+			Wait 0.5
+		EndIf
+	EndIf
+	WDX = -1
+
+	Return
+
+RAddY:
+Print "running in RAddY"
+	Tool 0
+
+'	Boxcheck
+'	Print "NowInBox =", NowInBox
+'	If InsideBox(6) = 0 Then Return
+'
+manualSpeed
+'
+	If WDFlag = 0 Then
+			Value_Up = CY(Here)
+	    Do While (TargetOK(Here :Y(Value_Up)))     '计算获取轴的极限正坐标值
+		    Value_Up = Value_Up + 1
+	    Loop
+	    	Value_Up = Value_Up - 10
+''	    Print Value_Up
+'	    If MemSw(20) = On And MemSw(110) = On Then Print "Moving to Y", Value_Up
+'		If Value_Up >= 170 Then
+'			Move Here :Y(170) Till(MemSw(20) = Off Or MemSw(110) = Off)
+'		Else
+			Move Here :Y(Value_Up) Till(MemSw(74) = On Or Oport(1) = Off)
+'		EndIf
+	Else
+        If WDY > 0 And TargetOK(Here +Y(WDY)) = True Then
+
+				If CY(Here) + WDY < 170 Then Move Here +Y(WDY) Else Move Here :Y(170)
+				Wait 0.5
+		EndIf
+	EndIf
+	WDY = -1
+
+	Return
+'
+RAddZ:
+Print "running in RAddZ"
+	Tool 0
+'	Boxcheck
+'	Print "NowInBox =", NowInBox
+'	If InsideBox(6) = 0 Then Return
+
+manualSpeed
+	If WDFlag = 0 Then
+			Value_Up = CZ(Here)
+
+    Do While (TargetOK(Here :Z(Value_Up)))     '计算获取轴的极限正坐标值
+	    Value_Up = Value_Up + 1
+    Loop
+    	Value_Up = Value_Up - 10
+
+'	If MemSw(20) = On And MemSw(110) = On Then Print "Moving to Z", Value_Up
+'		If Value_Up >= 515 Then
+'			Move Here :Z(515) Till(MemSw(20) = Off Or MemSw(110) = Off)
+'		Else
+			Move Here :Z(Value_Up) Till(MemSw(74) = On Or Oport(1) = Off)
+''		EndIf
+	Else
+        If WDZ > 0 And TargetOK(Here +Z(WDZ)) = True Then
+
+				If CZ(Here) + WDZ < 515 Then Move Here +Z(WDZ) Else Move Here :Z(515)
+				Wait 0.5
+		EndIf
+	EndIf
+	WDZ = -1
+	Return
+
+RAddU:
+Print "running in RAddU"
+	Tool 0
+'	Boxcheck
+'	Print "NowInBox =", NowInBox
+'	If InsideBox(6) = 0 Then Return
+
+manualSpeed
+Speed 1
+Accel 1, 1
+	If WDFlag = 0 Then
+	    	Value_Up = 175
+
+
+		Go Here :U(-Value_Up) Till(MemSw(74) = On Or Oport(1) = Off)
+	Else
+        If WDU > 0 And TargetOK(Here +U(WDU)) = True Then
+
+				Go Here +U(WDU)
+				Wait 0.5
+		EndIf
+	EndIf
+	WDU = -1
+
+manualSpeed
+	Return
+	
+RAddV:
+Print "running in RAddV"
+	Tool 0
+'	Boxcheck
+'	Print "NowInBox =", NowInBox
+'	If InsideBox(6) = 0 Then Return
+
+manualSpeed
+Speed 1
+Accel 1, 1
+	If WDFlag = 0 Then
+	    	Value_Up = 175
+
+
+		Go Here :V(-Value_Up) Till(MemSw(74) = On Or Oport(1) = Off)
+	Else
+        If WDV > 0 And TargetOK(Here +V(WDV)) = True Then
+
+				Go Here +V(WDV)
+				Wait 0.5
+		EndIf
+	EndIf
+	WDV = -1
+
+manualSpeed
+Return
+	
+RAddW:
+Print "running in RAddW"
+	Tool 0
+'	Boxcheck
+'	Print "NowInBox =", NowInBox
+'	If InsideBox(6) = 0 Then Return
+
+manualSpeed
+Speed 1
+Accel 1, 1
+	If WDFlag = 0 Then
+	    	Value_Up = 175
+
+
+		Go Here :W(-Value_Up) Till(MemSw(74) = On Or Oport(1) = Off)
+	Else
+        If WDW > 0 And TargetOK(Here +W(WDW)) = True Then
+
+				Go Here +W(WDW)
+				Wait 0.5
+		EndIf
+	EndIf
+	WDW = -1
+
+manualSpeed
+Return
+	
+RSubtractX:
+Print "running in RSubtractX"
+	Tool 0
+'	Boxcheck
+'	Print "NowInBox =", NowInBox
+'	If InsideBox(6) = 0 Then Return
+'
+manualSpeed
+	If WDFlag = 0 Then
+			Value_Up = CX(Here)
+	    Do While (TargetOK(Here :X(Value_Up)))     '计算获取轴的极限正坐标值
+		    Value_Up = Value_Up - 1
+	    Loop
+	    	Value_Up = Value_Up + 10
+'		Power Low
+'				If Value_Up <= -795 Then
+'			Move Here :X(-795) Till(MemSw(20) = Off Or MemSw(110) = Off)
+'		Else
+			Move Here :X(Value_Up) Till(MemSw(74) = On Or Oport(1) = Off)
+'		EndIf
+	Else
+
+        If WDX > 0 And TargetOK(Here -X(WDX)) = True Then
+'			Power Low
+			If CX(Here) - WDX > -795 Then Move Here -X(WDX) Else Move Here :X(-795)
+			Wait 0.5
+		EndIf
+	EndIf
+	WDX = -1
+'	MemOff 7
+	Return
+
+RSubtractY:
+Print "running in RSubtractY"
+	Tool 0
+'	Boxcheck
+'	Print "NowInBox =", NowInBox
+'	If InsideBox(6) = 0 Then Return
+'
+manualSpeed
+	If WDFlag = 0 Then
+			Value_Up = CY(Here)
+
+    Do While (TargetOK(Here :Y(Value_Up)))     '计算获取轴的极限正坐标值
+	    Value_Up = Value_Up - 1
+    Loop
+    	Value_Up = Value_Up + 10
+'	Power Low
+		Move Here :Y(Value_Up) Till(MemSw(74) = On Or Oport(1) = Off)
+
+'		Move Here :Y(-150) Till(MemSw(20) = Off Or MemSw(110) = Off)
+'
+	Else
+		If WDY > 0 And TargetOK(Here -Y(WDY)) = True Then
+'				Power Low
+				If CY(Here) - WDY > -150 Then Move Here -Y(WDY) Else Move Here :Y(-150)
+				Wait 0.5
+		EndIf
+	EndIf
+	WDY = -1
+'	MemOff 9
+	Return
+
+RSubtractZ:
+Print "running in RSubtractZ"
+	Tool 0
+'	Boxcheck
+'	Print "NowInBox =", NowInBox
+'	If InsideBox(6) = 0 Then Return
+'
+manualSpeed
+	If WDFlag = 0 Then
+			Value_Up = CZ(Here)
+
+    Do While (TargetOK(Here :Z(Value_Up)))     '计算获取轴的极限正坐标值
+	    Value_Up = Value_Up - 1
+    Loop
+    	Value_Up = Value_Up + 10
+'	Power Low
+	Move Here :Z(Value_Up) Till(MemSw(74) = On Or Oport(1) = Off)
+'	Move Here :Z(427.5) Till(MemSw(20) = Off Or MemSw(110) = Off)
+'
+	Else
+        If WDZ > 0 And TargetOK(Here -Z(WDZ)) = True Then
+'				Power Low
+				If CZ(Here) - WDZ > 427.5 Then Move Here -Z(WDZ) Else Move Here :Z(427.5)
+				Wait 0.5
+		EndIf
+	EndIf
+	WDZ = -1
+'	MemOff 11
+	Return
+
+RSubtractU:
+Print "running in RSubtractU"
+	Tool 0
+'	Boxcheck
+'	Print "NowInBox =", NowInBox
+'	If InsideBox(6) = 0 Then Return
+
+manualSpeed
+Speed 1
+Accel 1, 1
+	If WDFlag = 0 Then
+    	Value_Up = -175
+	Power Low
+	Go Here :U(-Value_Up) Till(MemSw(74) = On Or Oport(1) = Off)
+	Else
+		If WDU > 0 And TargetOK(Here -U(WDU)) = True Then
+
+				Go Here -U(WDU)
+				Wait 0.5
+		EndIf
+	EndIf
+	WDU = -1
+
+
+	Return
+
+RSubtractV:
+Print "running in RSubtractV"
+	Tool 0
+'	Boxcheck
+'	Print "NowInBox =", NowInBox
+'	If InsideBox(6) = 0 Then Return
+
+manualSpeed
+Speed 1
+Accel 1, 1
+	If WDFlag = 0 Then
+    	Value_Up = -175
+	Power Low
+	Go Here :V(-Value_Up) Till(MemSw(74) = On Or Oport(1) = Off)
+	Else
+		If WDV > 0 And TargetOK(Here -V(WDV)) = True Then
+
+				Go Here -V(WDV)
+				Wait 0.5
+		EndIf
+	EndIf
+	WDV = -1
+Return
+
+RSubtractW:
+Print "running in RSubtractW"
+	Tool 0
+'	Boxcheck
+'	Print "NowInBox =", NowInBox
+'	If InsideBox(6) = 0 Then Return
+
+manualSpeed
+Speed 1
+Accel 1, 1
+	If WDFlag = 0 Then
+    	Value_Up = -175
+	Power Low
+	Go Here :W(-Value_Up) Till(MemSw(74) = On Or Oport(1) = Off)
+	Else
+		If WDW > 0 And TargetOK(Here -W(WDW)) = True Then
+
+				Go Here -W(WDW)
+				Wait 0.5
+		EndIf
+	EndIf
+	WDW = -1
+Return
+
+Fend
+Function Fuyuan
+	
+Fend
+
+Function SpeedHigh
+Power High
+Speed 50
+SpeedS 800
+Accel 80, 80
+AccelS 1200, 1200
+Fend
+Function SpeedLow
+Speed 20 ', 20, 10
+SpeedS 200
+SpeedR 20
+Accel 40, 40
+AccelR 50, 50
+AccelS 400, 400
+Fend
+Function manualSpeed
+If Motor = Off Then Motor On
+If Power = 1 Then Power Low
+Speed 10
+SpeedS 20
+SpeedR 0.1
+Accel 20, 20
+AccelR 1, 1
+AccelS 40, 40
+Fend

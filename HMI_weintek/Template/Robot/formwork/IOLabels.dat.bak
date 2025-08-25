@@ -1,0 +1,654 @@
+ENVT0100,LM:2015/04/02 10:59:59:801,DS:0000009430,CS:08452,MA:3C-97-0E-8C-A5-80,EI:           
+sRCNGVersion="5.4.5"
+InputBitLabels {
+	nNumberOfLabels=24
+	Label1 {
+		nBit=0
+		sLabel=""
+		sDescription="遠程控制-Start"
+	}
+	Label2 {
+		nBit=1
+		sLabel=""
+		sDescription="遠程控制-Stop"
+	}
+	Label3 {
+		nBit=2
+		sLabel=""
+		sDescription="遠程控制-Pause"
+	}
+	Label4 {
+		nBit=3
+		sLabel=""
+		sDescription="遠程控制-Continue"
+	}
+	Label5 {
+		nBit=4
+		sLabel=""
+		sDescription="遠程控制-Reset"
+	}
+	Label6 {
+		nBit=5
+		sLabel=""
+		sDescription="備用1"
+	}
+	Label7 {
+		nBit=6
+		sLabel=""
+		sDescription="備用2"
+	}
+	Label8 {
+		nBit=7
+		sLabel=""
+		sDescription="備用3"
+	}
+	Label9 {
+		nBit=8
+		sLabel=""
+		sDescription="編碼通信0"
+	}
+	Label10 {
+		nBit=9
+		sLabel=""
+		sDescription="編碼通信1"
+	}
+	Label11 {
+		nBit=10
+		sLabel=""
+		sDescription="編碼通信2"
+	}
+	Label12 {
+		nBit=11
+		sLabel=""
+		sDescription="編碼通信3"
+	}
+	Label13 {
+		nBit=12
+		sLabel=""
+		sDescription="編碼通信4"
+	}
+	Label14 {
+		nBit=13
+		sLabel=""
+		sDescription="備用4"
+	}
+	Label15 {
+		nBit=14
+		sLabel=""
+		sDescription="備用5"
+	}
+	Label16 {
+		nBit=15
+		sLabel=""
+		sDescription="備用6"
+	}
+	Label17 {
+		nBit=16
+		sLabel=""
+		sDescription="備用7"
+	}
+	Label18 {
+		nBit=17
+		sLabel=""
+		sDescription="備用8"
+	}
+	Label19 {
+		nBit=18
+		sLabel=""
+		sDescription="備用9"
+	}
+	Label20 {
+		nBit=19
+		sLabel=""
+		sDescription="備用10"
+	}
+	Label21 {
+		nBit=20
+		sLabel=""
+		sDescription="備用11"
+	}
+	Label22 {
+		nBit=21
+		sLabel=""
+		sDescription="備用12"
+	}
+	Label23 {
+		nBit=22
+		sLabel=""
+		sDescription="備用13"
+	}
+	Label24 {
+		nBit=23
+		sLabel=""
+		sDescription="備用14"
+	}
+}
+InputByteLabels {
+	nNumberOfLabels=0
+}
+InputWordLabels {
+	nNumberOfLabels=0
+}
+OutputBitLabels {
+	nNumberOfLabels=16
+	Label1 {
+		nBit=0
+		sLabel=""
+		sDescription="機械手蓄態反饋-Ready/Error"
+	}
+	Label2 {
+		nBit=1
+		sLabel=""
+		sDescription="機械手蓄態反饋-Running"
+	}
+	Label3 {
+		nBit=2
+		sLabel=""
+		sDescription="機械手蓄態反饋-Paused"
+	}
+	Label4 {
+		nBit=3
+		sLabel=""
+		sDescription="機械手蓄態反饋-EstopOn"
+	}
+	Label5 {
+		nBit=4
+		sLabel=""
+		sDescription="備用1"
+	}
+	Label6 {
+		nBit=5
+		sLabel=""
+		sDescription="備用2"
+	}
+	Label7 {
+		nBit=6
+		sLabel=""
+		sDescription="備用3"
+	}
+	Label8 {
+		nBit=7
+		sLabel=""
+		sDescription="備用4"
+	}
+	Label9 {
+		nBit=8
+		sLabel=""
+		sDescription="編碼通信0"
+	}
+	Label10 {
+		nBit=9
+		sLabel=""
+		sDescription="編碼通信1"
+	}
+	Label11 {
+		nBit=10
+		sLabel=""
+		sDescription="編碼通信2"
+	}
+	Label12 {
+		nBit=11
+		sLabel=""
+		sDescription="編碼通信3"
+	}
+	Label13 {
+		nBit=12
+		sLabel=""
+		sDescription="編碼通信4"
+	}
+	Label14 {
+		nBit=13
+		sLabel=""
+		sDescription="備用5"
+	}
+	Label15 {
+		nBit=14
+		sLabel=""
+		sDescription="通信連接Ready"
+	}
+	Label16 {
+		nBit=15
+		sLabel=""
+		sDescription="備用7"
+	}
+}
+OutputByteLabels {
+	nNumberOfLabels=0
+}
+OutputWordLabels {
+	nNumberOfLabels=0
+}
+MemoryBitLabels {
+	nNumberOfLabels=85
+	Label1 {
+		nBit=0
+		sLabel=""
+		sDescription="MEMIN(0)流程編碼1"
+	}
+	Label2 {
+		nBit=1
+		sLabel=""
+		sDescription="MEMIN(0)流程編碼2"
+	}
+	Label3 {
+		nBit=2
+		sLabel=""
+		sDescription="MEMIN(0)流程編碼3"
+	}
+	Label4 {
+		nBit=3
+		sLabel=""
+		sDescription="MEMIN(0)流程編碼4"
+	}
+	Label5 {
+		nBit=4
+		sLabel=""
+		sDescription="MEMIN(0)流程編碼5"
+	}
+	Label6 {
+		nBit=5
+		sLabel=""
+		sDescription="MEMIN(0)流程編碼6"
+	}
+	Label7 {
+		nBit=6
+		sLabel=""
+		sDescription="MEMIN(0)流程編碼7"
+	}
+	Label8 {
+		nBit=7
+		sLabel=""
+		sDescription="MEMIN(0)流程編碼8"
+	}
+	Label9 {
+		nBit=8
+		sLabel=""
+		sDescription="MEMIN(1)報錯蓄態1"
+	}
+	Label10 {
+		nBit=9
+		sLabel=""
+		sDescription="MEMIN(1)報錯蓄態2"
+	}
+	Label11 {
+		nBit=10
+		sLabel=""
+		sDescription="MEMIN(1)報錯蓄態3"
+	}
+	Label12 {
+		nBit=11
+		sLabel=""
+		sDescription="MEMIN(1)報錯蓄態4"
+	}
+	Label13 {
+		nBit=12
+		sLabel=""
+		sDescription="MEMIN(1)報錯蓄態5"
+	}
+	Label14 {
+		nBit=13
+		sLabel=""
+		sDescription="MEMIN(1)報錯蓄態6"
+	}
+	Label15 {
+		nBit=14
+		sLabel=""
+		sDescription="MEMIN(1)報錯蓄態7"
+	}
+	Label16 {
+		nBit=15
+		sLabel=""
+		sDescription="MEMIN(1)報錯蓄態8"
+	}
+	Label17 {
+		nBit=16
+		sLabel=""
+		sDescription="MEMIN(2)報錯蓄態9"
+	}
+	Label18 {
+		nBit=17
+		sLabel=""
+		sDescription="MEMIN(2)報錯蓄態10"
+	}
+	Label19 {
+		nBit=18
+		sLabel=""
+		sDescription="MEMIN(2)報錯蓄態11"
+	}
+	Label20 {
+		nBit=19
+		sLabel=""
+		sDescription="MEMIN(2)報錯蓄態12"
+	}
+	Label21 {
+		nBit=20
+		sLabel=""
+		sDescription="MEMIN(2)報錯蓄態13"
+	}
+	Label22 {
+		nBit=21
+		sLabel=""
+		sDescription="MEMIN(2)報錯蓄態14"
+	}
+	Label23 {
+		nBit=22
+		sLabel=""
+		sDescription="MEMIN(2)報錯蓄態15"
+	}
+	Label24 {
+		nBit=23
+		sLabel=""
+		sDescription="MEMIN(2)報錯蓄態16"
+	}
+	Label25 {
+		nBit=24
+		sLabel=""
+		sDescription="MEMIN(3)報錯蓄態17"
+	}
+	Label26 {
+		nBit=25
+		sLabel=""
+		sDescription="MEMIN(3)報錯蓄態18"
+	}
+	Label27 {
+		nBit=26
+		sLabel=""
+		sDescription="MEMIN(3)報錯蓄態19"
+	}
+	Label28 {
+		nBit=27
+		sLabel=""
+		sDescription="MEMIN(3)報錯蓄態20"
+	}
+	Label29 {
+		nBit=28
+		sLabel=""
+		sDescription="MEMIN(3)報錯蓄態21"
+	}
+	Label30 {
+		nBit=29
+		sLabel=""
+		sDescription="MEMIN(3)報錯蓄態22"
+	}
+	Label31 {
+		nBit=30
+		sLabel=""
+		sDescription="MEMIN(3)報錯蓄態23"
+	}
+	Label32 {
+		nBit=31
+		sLabel=""
+		sDescription="MEMIN(3)報錯蓄態24"
+	}
+	Label33 {
+		nBit=32
+		sLabel=""
+		sDescription="MEMIN(4)備用編碼0"
+	}
+	Label34 {
+		nBit=33
+		sLabel=""
+		sDescription="MEMIN(4)備用編碼1"
+	}
+	Label35 {
+		nBit=34
+		sLabel=""
+		sDescription="MEMIN(4)備用編碼2"
+	}
+	Label36 {
+		nBit=35
+		sLabel=""
+		sDescription="MEMIN(4)備用編碼3"
+	}
+	Label37 {
+		nBit=36
+		sLabel=""
+		sDescription="MEMIN(4)備用編碼4"
+	}
+	Label38 {
+		nBit=37
+		sLabel=""
+		sDescription="MEMIN(4)備用編碼5"
+	}
+	Label39 {
+		nBit=38
+		sLabel=""
+		sDescription="MEMIN(4)備用編碼6"
+	}
+	Label40 {
+		nBit=39
+		sLabel=""
+		sDescription="MEMIN(4)備用編碼7"
+	}
+	Label41 {
+		nBit=40
+		sLabel=""
+		sDescription="MEMIN(5)備用編碼0"
+	}
+	Label42 {
+		nBit=41
+		sLabel=""
+		sDescription="MEMIN(5)備用編碼1"
+	}
+	Label43 {
+		nBit=42
+		sLabel=""
+		sDescription="MEMIN(5)備用編碼2"
+	}
+	Label44 {
+		nBit=43
+		sLabel=""
+		sDescription="MEMIN(5)備用編碼3"
+	}
+	Label45 {
+		nBit=44
+		sLabel=""
+		sDescription="MEMIN(5)備用編碼4"
+	}
+	Label46 {
+		nBit=45
+		sLabel=""
+		sDescription="MEMIN(5)備用編碼5"
+	}
+	Label47 {
+		nBit=46
+		sLabel=""
+		sDescription="MEMIN(5)備用編碼6"
+	}
+	Label48 {
+		nBit=47
+		sLabel=""
+		sDescription="MEMIN(5)備用編碼7"
+	}
+	Label49 {
+		nBit=72
+		sLabel=""
+		sDescription="AutoMode/ManulMode"
+	}
+	Label50 {
+		nBit=80
+		sLabel=""
+		sDescription="RAddX"
+	}
+	Label51 {
+		nBit=81
+		sLabel=""
+		sDescription="RSubtractX"
+	}
+	Label52 {
+		nBit=82
+		sLabel=""
+		sDescription="RAddY"
+	}
+	Label53 {
+		nBit=83
+		sLabel=""
+		sDescription="RSubtractY"
+	}
+	Label54 {
+		nBit=84
+		sLabel=""
+		sDescription="RAddZ"
+	}
+	Label55 {
+		nBit=85
+		sLabel=""
+		sDescription="RSubtractZ"
+	}
+	Label56 {
+		nBit=86
+		sLabel=""
+		sDescription="RAddU"
+	}
+	Label57 {
+		nBit=87
+		sLabel=""
+		sDescription="RSubtractU"
+	}
+	Label58 {
+		nBit=88
+		sLabel=""
+		sDescription="RAddV"
+	}
+	Label59 {
+		nBit=89
+		sLabel=""
+		sDescription="RSubtractV"
+	}
+	Label60 {
+		nBit=90
+		sLabel=""
+		sDescription="RAddW"
+	}
+	Label61 {
+		nBit=91
+		sLabel=""
+		sDescription="RSubtractW"
+	}
+	Label62 {
+		nBit=92
+		sLabel=""
+		sDescription="PassMode"
+	}
+	Label63 {
+		nBit=93
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label64 {
+		nBit=94
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label65 {
+		nBit=95
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label66 {
+		nBit=96
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label67 {
+		nBit=97
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label68 {
+		nBit=98
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label69 {
+		nBit=99
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label70 {
+		nBit=100
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label71 {
+		nBit=101
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label72 {
+		nBit=102
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label73 {
+		nBit=103
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label74 {
+		nBit=104
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label75 {
+		nBit=105
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label76 {
+		nBit=106
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label77 {
+		nBit=107
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label78 {
+		nBit=108
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label79 {
+		nBit=109
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label80 {
+		nBit=110
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label81 {
+		nBit=111
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label82 {
+		nBit=112
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label83 {
+		nBit=113
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label84 {
+		nBit=114
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+	Label85 {
+		nBit=115
+		sLabel=""
+		sDescription="手動任務佔用"
+	}
+}
+MemoryByteLabels {
+	nNumberOfLabels=0
+}
+MemoryWordLabels {
+	nNumberOfLabels=0
+}
